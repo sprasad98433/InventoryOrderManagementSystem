@@ -56,4 +56,16 @@ Public Class ProductListForm
             MessageBox.Show(ex.Message, "Error")
         End Try
     End Sub
+
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        LoadProducts()
+    End Sub
+
+    Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
+        Dim frm As New AddProductForm()
+        frm.ShowDialog()
+
+        ' After closing AddProductForm, refresh product list
+        LoadProducts()
+    End Sub
 End Class

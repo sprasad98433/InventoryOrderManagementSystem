@@ -5,6 +5,11 @@ Imports Inventory.Contract
 Public Class AddProductForm
 
     Private _productId As Integer = 0
+
+    Public Sub New()
+        InitializeComponent()
+        _productId = 0
+    End Sub
     Public Sub New(productId As Integer)
         InitializeComponent()
         _productId = productId

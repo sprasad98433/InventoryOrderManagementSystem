@@ -130,6 +130,34 @@ Public Class ProductRepository
 
     End Sub
 
+    Public Function GetReorderProducts() As DataTable
+
+        Dim dt As New DataTable()
+
+        Using con = DbConnectionFactory.Create()
+            Using cmd As New SqlCommand(
+            "SELECT 
+                p.ProductId,
+                p.Name,
+                p.QuantityOnHand,
+                p.ReorderLevel,
+                s.Name AS SupplierName
+             FROM Products p
+             INNER JOIN Suppliers s ON p.SupplierId = s.SupplierId
+             WHERE p.IsActive = 1
+               AND p.QuantityOnHand <= p.ReorderLevel
+             ORDER BY p.QuantityOnHand ASC", con)
+
+                Using da As New SqlDataAdapter(cmd)
+                    da.Fill(dt)
+                End Using
+
+            End Using
+        End Using
+
+        Return dt
+
+    End Function
 
 
 End Class

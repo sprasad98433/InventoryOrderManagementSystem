@@ -26,6 +26,7 @@ Partial Class ProductListForm
         btnEdit = New Button()
         btnRefresh = New Button()
         btnDelete = New Button()
+        btnAddNew = New Button()
         CType(dgvProducts, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -45,7 +46,7 @@ Partial Class ProductListForm
         ' 
         ' btnEdit
         ' 
-        btnEdit.Location = New Point(191, 311)
+        btnEdit.Location = New Point(272, 311)
         btnEdit.Name = "btnEdit"
         btnEdit.Size = New Size(112, 34)
         btnEdit.TabIndex = 1
@@ -54,7 +55,7 @@ Partial Class ProductListForm
         ' 
         ' btnRefresh
         ' 
-        btnRefresh.Location = New Point(477, 311)
+        btnRefresh.Location = New Point(568, 311)
         btnRefresh.Name = "btnRefresh"
         btnRefresh.Size = New Size(112, 34)
         btnRefresh.TabIndex = 2
@@ -63,18 +64,28 @@ Partial Class ProductListForm
         ' 
         ' btnDelete
         ' 
-        btnDelete.Location = New Point(327, 311)
+        btnDelete.Location = New Point(420, 311)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(112, 34)
         btnDelete.TabIndex = 3
         btnDelete.Text = "Delete"
         btnDelete.UseVisualStyleBackColor = True
         ' 
+        ' btnAddNew
+        ' 
+        btnAddNew.Location = New Point(46, 311)
+        btnAddNew.Name = "btnAddNew"
+        btnAddNew.Size = New Size(184, 34)
+        btnAddNew.TabIndex = 4
+        btnAddNew.Text = "Add new product"
+        btnAddNew.UseVisualStyleBackColor = True
+        ' 
         ' ProductListForm
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(btnAddNew)
         Controls.Add(btnDelete)
         Controls.Add(btnRefresh)
         Controls.Add(btnEdit)
@@ -89,4 +100,5 @@ Partial Class ProductListForm
     Friend WithEvents btnEdit As Button
     Friend WithEvents btnRefresh As Button
     Friend WithEvents btnDelete As Button
+    Friend WithEvents btnAddNew As Button
 End Class

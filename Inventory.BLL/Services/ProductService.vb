@@ -71,6 +71,9 @@ Public Class ProductService
         _repo.DeleteProduct(productId)
 
     End Sub
+    Public Function GetReorderProducts() As DataTable
+        Return _repo.GetReorderProducts()
+    End Function
 
 
 End Class
