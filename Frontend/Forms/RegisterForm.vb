@@ -1,31 +1,25 @@
-﻿Imports System.IO
-Imports Inventory.BLL
-
-
-
+﻿Imports Inventory.BLL
+Imports Inventory.Contract.Inventory.Contracts.DTOs
 
 Public Class RegisterForm
-    Private Sub RegisterForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-
-        ' Load roles
-        cmbRole.Items.Add("Admin")
-        cmbRole.Items.Add("User")
-        cmbRole.SelectedIndex = 1   ' Default User
-
-        ' Load status
-        cmbStatus.Items.Add("Active")
-        cmbStatus.Items.Add("Inactive")
-        cmbStatus.SelectedIndex = 0 ' Default Active
-    End Sub
-
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        Dim _auth As New AuthService()
         Try
-            ' Basic UI validation
+            ' 1. Basic validation
+            If String.IsNullOrWhiteSpace(txtFullName.Text) Then
+                MessageBox.Show("Full Name is required")
+                txtFullName.Focus()
+                Exit Sub
+            End If
+
             If String.IsNullOrWhiteSpace(txtUsername.Text) Then
                 MessageBox.Show("Username is required")
                 txtUsername.Focus()
+                Exit Sub
+            End If
+
+            If String.IsNullOrWhiteSpace(txtEmail.Text) Then
+                MessageBox.Show("Email is required")
+                txtEmail.Focus()
                 Exit Sub
             End If
 
@@ -35,26 +29,38 @@ Public Class RegisterForm
                 Exit Sub
             End If
 
+            If txtPassword.Text <> txtConfirmPassword.Text Then
+                MessageBox.Show("Password and Confirm Password do not match")
+                txtConfirmPassword.Focus()
+                Exit Sub
+            End If
+
+            ' 2. Create DTO
             Dim user As New UserDTO With {
-                .Username = txtUsername.Text.Trim(),
-                .Password = txtPassword.Text,
-                .Role = cmbRole.Text,
-                .IsActive = (cmbStatus.Text = "Active")
-            }
+            .FullName = txtFullName.Text.Trim(),
+            .Username = txtUsername.Text.Trim(),
+            .Email = txtEmail.Text.Trim(),
+            .Phone = txtPhone.Text.Trim(),
+            .Address = txtAddress.Text.Trim(),
+            .Password = txtPassword.Text,
+            .CreatedBy = txtUsername.Text.Trim()
+        }
 
-            _auth.Register(user)
+            ' 3. Call BLL
+            Dim auth As New AuthService()
+            auth.Register(user)
 
-            'MessageBox.Show("User registered successfully", "Success")
-            Dim dash As New LoginForm()
-            dash.Show()
+            ' 4. Success
+            MessageBox.Show("Registration successful. Please login.", "Success")
+
+            ' 5. Redirect to Login
+            Dim login As New LoginForm()
+            login.Show()
             Me.Hide()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error")
         End Try
-    End Sub
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Me.Close()
     End Sub
 End Class

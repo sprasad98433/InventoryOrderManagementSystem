@@ -11,7 +11,8 @@ Public Class AuthService
     ' =========================
     Public Sub Register(user As UserDTO)
 
-        ' Business validation
+
+
         If String.IsNullOrWhiteSpace(user.Username) Then
             Throw New Exception("Username is required")
         End If
@@ -24,11 +25,17 @@ Public Class AuthService
             Throw New Exception("Email is required")
         End If
 
-        ' Hash password in BLL
+        ' 🔒 Enforce system rules
+        user.Role = "User"        ' Default role
+        user.IsActive = True      ' Default active
+
+        ' Hash password
         Dim passwordHash As String = PasswordHasher.Hash(user.Password)
 
-        ' Call DAL (pass DTO + hash)
         _repo.Register(user, passwordHash)
+
+
+
 
     End Sub
 

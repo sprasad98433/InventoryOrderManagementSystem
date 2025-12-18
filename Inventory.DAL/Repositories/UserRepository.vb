@@ -41,7 +41,7 @@ Public Class UserRepository
 
         Using con = DbConnectionFactory.Create()
             Using cmd As New SqlCommand(
-                "SELECT UserId, Username, Role, IsActive
+                "SELECT *
                  FROM Users
                  WHERE Username=@u 
                    AND PasswordHash=@p
