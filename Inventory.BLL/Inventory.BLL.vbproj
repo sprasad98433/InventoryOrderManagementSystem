@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Inventory.BLL</RootNamespace>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Inventory.Contract\Inventory.Contract.vbproj" />
+    <ProjectReference Include="..\Inventory.DAL\Inventory.DAL.vbproj" />
+    <ProjectReference Include="..\Inventory.Infrastructure\Inventory.Infrastructure.vbproj" />
+  </ItemGroup>
+
+</Project>
