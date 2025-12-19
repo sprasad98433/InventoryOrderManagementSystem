@@ -158,6 +158,33 @@ Public Class ProductRepository
         Return dt
 
     End Function
+    Public Function GetLowStockProducts() As DataTable
+
+        Dim dt As New DataTable()
+
+        Using con = DbConnectionFactory.Create()
+            Using cmd As New Microsoft.Data.SqlClient.SqlCommand(
+            "SELECT 
+                ProductId,
+                Name,
+                SKU,
+                QuantityOnHand,
+                ReorderLevel
+             FROM Products
+             WHERE QuantityOnHand <= ReorderLevel
+               AND IsActive = 1
+             ORDER BY QuantityOnHand ASC", con)
+
+                Using da As New Microsoft.Data.SqlClient.SqlDataAdapter(cmd)
+                    da.Fill(dt)
+                End Using
+
+            End Using
+        End Using
+
+        Return dt
+
+    End Function
 
 
 End Class

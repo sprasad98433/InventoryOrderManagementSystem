@@ -74,6 +74,9 @@ Public Class ProductService
     Public Function GetReorderProducts() As DataTable
         Return _repo.GetReorderProducts()
     End Function
+    Public Function GetLowStockProducts() As DataTable
+        Return _repo.GetLowStockProducts()
+    End Function
 
 
 End Class
