@@ -3,7 +3,18 @@
         Dim name As String = SessionManager.Username
         Label1.Text = "Welcome, " & name & "!"
     End Sub
+    'Master page logic 
+    Private Sub OpenChildForm(frm As Form)
 
+        For Each f As Form In Me.MdiChildren
+            f.Close()
+        Next
+
+        frm.MdiParent = Me
+        frm.WindowState = FormWindowState.Maximized
+        frm.Show()
+
+    End Sub
 
 
 
@@ -38,8 +49,8 @@
         frm.ShowDialog()
     End Sub
 
-    Private Sub mnuExit_Click(sender As Object, e As EventArgs) Handles mnuExit.Click
-        Application.Exit()
+    Private Sub mnuExit_Click(sender As Object, e As EventArgs)
+        Application.Exit
     End Sub
 
     Private Sub mnuProductList_Click(sender As Object, e As EventArgs) Handles mnuProductList.Click
@@ -61,5 +72,35 @@
         Dim frm As New AddSupplierForm()
         frm.Show()
 
+    End Sub
+
+    Private Sub mnuNewSales_Click(sender As Object, e As EventArgs) Handles mnuNewSales.Click
+        Dim frm As New SalesOrderForm()
+        frm.Show()
+    End Sub
+
+    Private Sub mnuSalesList_Click(sender As Object, e As EventArgs) Handles mnuSalesList.Click
+
+        Dim frm As New SalesOrderListForm()
+        frm.Show()
+    End Sub
+
+    Private Sub mnuReceipts_Click(sender As Object, e As EventArgs) Handles mnuReceipts.Click
+
+        Dim frm As New ReceiptForm()
+        frm.Show()
+    End Sub
+
+    Private Sub mnuAddCustomer_Click(sender As Object, e As EventArgs) Handles mnuAddCustomer.Click
+
+        Dim frm As New AddCustomerForm()
+        frm.Show()
+
+    End Sub
+
+    Private Sub mnuCustomerlist_Click(sender As Object, e As EventArgs) Handles mnuCustomerlist.Click
+
+        Dim frm As New CustomerListForm()
+        frm.Show()
     End Sub
 End Class

@@ -29,6 +29,7 @@ Partial Class DashboardForm
         mnuProductList = New ToolStripMenuItem()
         mnuAddProduct = New ToolStripMenuItem()
         SuppliersToolStripMenuItem = New ToolStripMenuItem()
+        AddUpdateSupplierToolStripMenuItem = New ToolStripMenuItem()
         InventoryToolStripMenuItem = New ToolStripMenuItem()
         mnuInventoryTxn = New ToolStripMenuItem()
         mnuInventoryHistory = New ToolStripMenuItem()
@@ -37,10 +38,15 @@ Partial Class DashboardForm
         mnuCreatePO = New ToolStripMenuItem()
         mnuReceivePO = New ToolStripMenuItem()
         mnuPOList = New ToolStripMenuItem()
-        mnuExit = New ToolStripMenuItem()
         ReportsToolStripMenuItem = New ToolStripMenuItem()
         mnuLowStockReport = New ToolStripMenuItem()
-        AddUpdateSupplierToolStripMenuItem = New ToolStripMenuItem()
+        CustomerMasterToolStripMenuItem = New ToolStripMenuItem()
+        mnuAddCustomer = New ToolStripMenuItem()
+        mnuCustomerlist = New ToolStripMenuItem()
+        TransactionsToolStripMenuItem = New ToolStripMenuItem()
+        mnuNewSales = New ToolStripMenuItem()
+        mnuSalesList = New ToolStripMenuItem()
+        mnuReceipts = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -56,7 +62,7 @@ Partial Class DashboardForm
         ' MenuStrip1
         ' 
         MenuStrip1.ImageScalingSize = New Size(24, 24)
-        MenuStrip1.Items.AddRange(New ToolStripItem() {MastersToolStripMenuItem, InventoryToolStripMenuItem, PurchaseToolStripMenuItem, mnuExit, ReportsToolStripMenuItem})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {MastersToolStripMenuItem, InventoryToolStripMenuItem, PurchaseToolStripMenuItem, ReportsToolStripMenuItem, CustomerMasterToolStripMenuItem, TransactionsToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Padding = New Padding(10, 3, 0, 3)
@@ -75,7 +81,7 @@ Partial Class DashboardForm
         ' 
         mnuProducts.DropDownItems.AddRange(New ToolStripItem() {mnuProductList, mnuAddProduct})
         mnuProducts.Name = "mnuProducts"
-        mnuProducts.Size = New Size(270, 34)
+        mnuProducts.Size = New Size(187, 34)
         mnuProducts.Text = "Products"
         ' 
         ' mnuProductList
@@ -94,8 +100,14 @@ Partial Class DashboardForm
         ' 
         SuppliersToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {AddUpdateSupplierToolStripMenuItem})
         SuppliersToolStripMenuItem.Name = "SuppliersToolStripMenuItem"
-        SuppliersToolStripMenuItem.Size = New Size(270, 34)
+        SuppliersToolStripMenuItem.Size = New Size(187, 34)
         SuppliersToolStripMenuItem.Text = "Suppliers"
+        ' 
+        ' AddUpdateSupplierToolStripMenuItem
+        ' 
+        AddUpdateSupplierToolStripMenuItem.Name = "AddUpdateSupplierToolStripMenuItem"
+        AddUpdateSupplierToolStripMenuItem.Size = New Size(283, 34)
+        AddUpdateSupplierToolStripMenuItem.Text = "Add/Update Supplier"
         ' 
         ' InventoryToolStripMenuItem
         ' 
@@ -147,12 +159,6 @@ Partial Class DashboardForm
         mnuPOList.Size = New Size(290, 34)
         mnuPOList.Text = "Purchase Order List"
         ' 
-        ' mnuExit
-        ' 
-        mnuExit.Name = "mnuExit"
-        mnuExit.Size = New Size(55, 29)
-        mnuExit.Text = "Exit"
-        ' 
         ' ReportsToolStripMenuItem
         ' 
         ReportsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuLowStockReport})
@@ -163,14 +169,52 @@ Partial Class DashboardForm
         ' mnuLowStockReport
         ' 
         mnuLowStockReport.Name = "mnuLowStockReport"
-        mnuLowStockReport.Size = New Size(270, 34)
+        mnuLowStockReport.Size = New Size(252, 34)
         mnuLowStockReport.Text = "Low Stock Report"
         ' 
-        ' AddUpdateSupplierToolStripMenuItem
+        ' CustomerMasterToolStripMenuItem
         ' 
-        AddUpdateSupplierToolStripMenuItem.Name = "AddUpdateSupplierToolStripMenuItem"
-        AddUpdateSupplierToolStripMenuItem.Size = New Size(283, 34)
-        AddUpdateSupplierToolStripMenuItem.Text = "Add/Update Supplier"
+        CustomerMasterToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuAddCustomer, mnuCustomerlist})
+        CustomerMasterToolStripMenuItem.Name = "CustomerMasterToolStripMenuItem"
+        CustomerMasterToolStripMenuItem.Size = New Size(164, 29)
+        CustomerMasterToolStripMenuItem.Text = "Customer Master"
+        ' 
+        ' mnuAddCustomer
+        ' 
+        mnuAddCustomer.Name = "mnuAddCustomer"
+        mnuAddCustomer.Size = New Size(230, 34)
+        mnuAddCustomer.Text = "Add Customer"
+        ' 
+        ' mnuCustomerlist
+        ' 
+        mnuCustomerlist.Name = "mnuCustomerlist"
+        mnuCustomerlist.Size = New Size(230, 34)
+        mnuCustomerlist.Text = "Customer List"
+        ' 
+        ' TransactionsToolStripMenuItem
+        ' 
+        TransactionsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuNewSales, mnuSalesList, mnuReceipts})
+        TransactionsToolStripMenuItem.Name = "TransactionsToolStripMenuItem"
+        TransactionsToolStripMenuItem.Size = New Size(124, 29)
+        TransactionsToolStripMenuItem.Text = "Transactions"
+        ' 
+        ' mnuNewSales
+        ' 
+        mnuNewSales.Name = "mnuNewSales"
+        mnuNewSales.Size = New Size(270, 34)
+        mnuNewSales.Text = "New Sales Order"
+        ' 
+        ' mnuSalesList
+        ' 
+        mnuSalesList.Name = "mnuSalesList"
+        mnuSalesList.Size = New Size(270, 34)
+        mnuSalesList.Text = "Sales Order List"
+        ' 
+        ' mnuReceipts
+        ' 
+        mnuReceipts.Name = "mnuReceipts"
+        mnuReceipts.Size = New Size(270, 34)
+        mnuReceipts.Text = "Receipts"
         ' 
         ' DashboardForm
         ' 
@@ -180,6 +224,7 @@ Partial Class DashboardForm
         Controls.Add(Label1)
         Controls.Add(MenuStrip1)
         Font = New Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        IsMdiContainer = True
         MainMenuStrip = MenuStrip1
         Margin = New Padding(5)
         Name = "DashboardForm"
@@ -203,10 +248,16 @@ Partial Class DashboardForm
     Friend WithEvents mnuCreatePO As ToolStripMenuItem
     Friend WithEvents mnuReceivePO As ToolStripMenuItem
     Friend WithEvents mnuPOList As ToolStripMenuItem
-    Friend WithEvents mnuExit As ToolStripMenuItem
     Friend WithEvents mnuProductList As ToolStripMenuItem
     Friend WithEvents mnuAddProduct As ToolStripMenuItem
     Friend WithEvents ReportsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents mnuLowStockReport As ToolStripMenuItem
     Friend WithEvents AddUpdateSupplierToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CustomerMasterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TransactionsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mnuNewSales As ToolStripMenuItem
+    Friend WithEvents mnuSalesList As ToolStripMenuItem
+    Friend WithEvents mnuReceipts As ToolStripMenuItem
+    Friend WithEvents mnuAddCustomer As ToolStripMenuItem
+    Friend WithEvents mnuCustomerlist As ToolStripMenuItem
 End Class
