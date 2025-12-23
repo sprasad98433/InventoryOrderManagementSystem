@@ -85,6 +85,8 @@ Partial Class LoginForm
         ' 
         AutoScaleDimensions = New SizeF(10F, 25F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = SystemColors.Control
+        BackgroundImage = My.Resources.Resources.Screenshot_2025_12_22_221318
         ClientSize = New Size(800, 450)
         Controls.Add(btnGoRegister)
         Controls.Add(btnLogin)

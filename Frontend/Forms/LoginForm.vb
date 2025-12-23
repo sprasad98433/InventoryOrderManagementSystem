@@ -7,24 +7,23 @@ Public Class LoginForm
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try
             If String.IsNullOrWhiteSpace(txtUsername.Text) OrElse
-               String.IsNullOrWhiteSpace(txtPassword.Text) Then
+           String.IsNullOrWhiteSpace(txtPassword.Text) Then
 
                 MessageBox.Show("Please enter username and password")
                 Exit Sub
             End If
 
             Dim user As UserDTO =
-                _authService.Login(txtUsername.Text.Trim(), txtPassword.Text)
+            _authService.Login(txtUsername.Text.Trim(), txtPassword.Text)
 
-            ' Store session
+            ' Store session (ONLY WHAT LOGIN RETURNS)
             SessionManager.UserId = user.UserId
             SessionManager.Username = user.Username
             SessionManager.Role = user.Role
-            SessionManager.IsActive = user.IsActive
 
             MessageBox.Show("Login successful", "Success")
 
-            ' Open Dashboard
+            ' Open Master Page (MDI Parent)
             Dim dash As New DashboardForm()
             dash.Show()
             Me.Hide()

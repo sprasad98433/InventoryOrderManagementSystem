@@ -3,6 +3,7 @@
 Public Class ProductListForm
     Private Sub ProductListForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadProducts()
+        ApplyRoleSecurity()
     End Sub
 
     Private Sub LoadProducts()
@@ -68,4 +69,18 @@ Public Class ProductListForm
         ' After closing AddProductForm, refresh product list
         LoadProducts()
     End Sub
+
+    Private Sub ApplyRoleSecurity()
+
+        If SessionManager.Role = "Admin" Then
+            Exit Sub
+        End If
+
+        ' User role restrictions
+        btnAddNew.Enabled = False
+        btnEdit.Enabled = False
+        btnDelete.Enabled = False
+
+    End Sub
+
 End Class

@@ -1,7 +1,13 @@
 ﻿Public Class DashboardForm
     Private Sub DashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim name As String = SessionManager.Username
-        Label1.Text = "Welcome, " & name & "!"
+        If SessionManager.UserId = 0 Then
+            MessageBox.Show("Session expired. Please login again.")
+            Dim login As New LoginForm()
+            login.Show()
+            Me.Close()
+            Exit Sub
+        End If
+
     End Sub
     'Master page logic 
     Private Sub OpenChildForm(frm As Form)
@@ -102,5 +108,28 @@
 
         Dim frm As New CustomerListForm()
         frm.Show()
+    End Sub
+
+    Private Sub MenuStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles MenuStrip1.ItemClicked
+
+    End Sub
+
+    Private Sub mnuLogout_Click(sender As Object, e As EventArgs) Handles mnuLogout.Click
+        If MessageBox.Show("Are you sure you want to logout?",
+                       "Confirm Logout",
+                       MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Question) = DialogResult.No Then
+
+            SessionManager.UserId = 0
+            SessionManager.Username = Nothing
+            SessionManager.Role = Nothing
+
+            ' Go back to Login
+            Dim login As New LoginForm()
+            login.Show()
+
+            Me.Close()
+            Exit Sub
+        End If
     End Sub
 End Class

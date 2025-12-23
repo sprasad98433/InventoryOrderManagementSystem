@@ -45,7 +45,7 @@ Public Class AuthService
     Public Function Login(username As String, password As String) As UserDTO
 
         If String.IsNullOrWhiteSpace(username) OrElse
-           String.IsNullOrWhiteSpace(password) Then
+       String.IsNullOrWhiteSpace(password) Then
             Throw New Exception("Username and password are required")
         End If
 
@@ -56,17 +56,12 @@ Public Class AuthService
             Throw New Exception("Invalid username, password, or inactive account")
         End If
 
-        ' Map DAL result to DTO
         Return New UserDTO With {
-            .UserId = CInt(dt.Rows(0)("UserId")),
-            .FullName = dt.Rows(0)("FullName").ToString(),
-            .username = dt.Rows(0)("Username").ToString(),
-            .Email = dt.Rows(0)("Email").ToString(),
-            .Phone = dt.Rows(0)("Phone").ToString(),
-            .Address = dt.Rows(0)("Address").ToString(),
-            .Role = dt.Rows(0)("Role").ToString(),
-            .IsActive = CBool(dt.Rows(0)("IsActive"))
+            .UserId = Convert.ToInt32(dt.Rows(0)("UserId")),
+            .Username = dt.Rows(0)("Username").ToString(),
+            .Role = dt.Rows(0)("Role").ToString()
         }
+
 
     End Function
 

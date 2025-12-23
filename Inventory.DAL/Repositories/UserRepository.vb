@@ -37,15 +37,16 @@ Public Class UserRepository
 
 
     Public Function Login(username As String, passwordHash As String) As DataTable
+
         Dim dt As New DataTable()
 
         Using con = DbConnectionFactory.Create()
             Using cmd As New SqlCommand(
-                "SELECT *
-                 FROM Users
-                 WHERE Username=@u 
-                   AND PasswordHash=@p
-                   AND IsActive=1", con)
+                "SELECT UserId, Username, Role
+             FROM Users
+             WHERE Username = @u
+               AND PasswordHash = @p
+               AND IsActive = 1", con)
 
                 cmd.Parameters.AddWithValue("@u", username)
                 cmd.Parameters.AddWithValue("@p", passwordHash)
@@ -53,10 +54,15 @@ Public Class UserRepository
                 Using da As New SqlDataAdapter(cmd)
                     da.Fill(dt)
                 End Using
+
             End Using
         End Using
 
         Return dt
+
     End Function
+
+
+
 
 End Class

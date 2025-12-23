@@ -47,6 +47,7 @@ Partial Class DashboardForm
         mnuNewSales = New ToolStripMenuItem()
         mnuSalesList = New ToolStripMenuItem()
         mnuReceipts = New ToolStripMenuItem()
+        mnuLogout = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -62,7 +63,7 @@ Partial Class DashboardForm
         ' MenuStrip1
         ' 
         MenuStrip1.ImageScalingSize = New Size(24, 24)
-        MenuStrip1.Items.AddRange(New ToolStripItem() {MastersToolStripMenuItem, InventoryToolStripMenuItem, PurchaseToolStripMenuItem, ReportsToolStripMenuItem, CustomerMasterToolStripMenuItem, TransactionsToolStripMenuItem})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {MastersToolStripMenuItem, InventoryToolStripMenuItem, PurchaseToolStripMenuItem, ReportsToolStripMenuItem, CustomerMasterToolStripMenuItem, TransactionsToolStripMenuItem, mnuLogout})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Padding = New Padding(10, 3, 0, 3)
@@ -216,6 +217,12 @@ Partial Class DashboardForm
         mnuReceipts.Size = New Size(270, 34)
         mnuReceipts.Text = "Receipts"
         ' 
+        ' mnuLogout
+        ' 
+        mnuLogout.Name = "mnuLogout"
+        mnuLogout.Size = New Size(85, 29)
+        mnuLogout.Text = "Logout"
+        ' 
         ' DashboardForm
         ' 
         AutoScaleDimensions = New SizeF(17F, 38F)
@@ -260,4 +267,5 @@ Partial Class DashboardForm
     Friend WithEvents mnuReceipts As ToolStripMenuItem
     Friend WithEvents mnuAddCustomer As ToolStripMenuItem
     Friend WithEvents mnuCustomerlist As ToolStripMenuItem
+    Friend WithEvents mnuLogout As ToolStripMenuItem
 End Class

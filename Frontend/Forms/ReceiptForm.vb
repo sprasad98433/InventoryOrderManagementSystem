@@ -69,7 +69,6 @@ Public Class ReceiptForm
         g.DrawString("----------------------------------", bodyFont, Brushes.Black, 20, y)
         y += 20
 
-
         ' ===== ITEM HEADER =====
         g.DrawString("Item", headerFont, Brushes.Black, 20, y)
         g.DrawString("Qty", headerFont, Brushes.Black, 160, y)
@@ -80,9 +79,14 @@ Public Class ReceiptForm
         g.DrawString("----------------------------------", bodyFont, Brushes.Black, 20, y)
         y += 15
 
-
         ' ===== ITEM LINES =====
+        Dim receiptTotal As Decimal = 0D
+
         For Each row As DataGridViewRow In dgvReceipts.Rows
+
+            ' 🔒 SAFETY CHECKS
+            If row.IsNewRow Then Continue For
+            If row.Cells("ReceiptId").Value Is Nothing Then Continue For
 
             If Convert.ToInt32(row.Cells("ReceiptId").Value) = _receiptId Then
 
@@ -96,19 +100,19 @@ Public Class ReceiptForm
                 g.DrawString(price.ToString("0.00"), bodyFont, Brushes.Black, 210, y)
                 g.DrawString(lineTotal.ToString("0.00"), bodyFont, Brushes.Black, 280, y)
 
+                receiptTotal += lineTotal
                 y += 18
             End If
 
         Next
-
 
         ' ===== TOTAL =====
         y += 10
         g.DrawString("----------------------------------", bodyFont, Brushes.Black, 20, y)
         y += 20
 
-        g.DrawString("TOTAL AMOUNT : ₹ " & _amount.ToString("0.00"),
-                 headerFont, Brushes.Black, 20, y)
+        g.DrawString("TOTAL AMOUNT : ₹ " & receiptTotal.ToString("0.00"),
+                     headerFont, Brushes.Black, 20, y)
         y += 25
 
         g.DrawString("Payment Mode : " & _paymentMode, bodyFont, Brushes.Black, 20, y)
@@ -118,6 +122,7 @@ Public Class ReceiptForm
         y += 30
 
         g.DrawString("Thank you for your business!", bodyFont, Brushes.Black, 40, y)
+
 
     End Sub
 End Class
